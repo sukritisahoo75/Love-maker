@@ -1,0 +1,238 @@
+/* First Page - Neon Styles */
+body {
+    background-color: #0a0a0a;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.neon-container {
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    padding: 20px;
+}
+
+.neon-title {
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #fff;
+    text-shadow: 
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px #ff00de,
+        0 0 40px #ff00de;
+    margin-bottom: 2rem;
+}
+
+.neon-flicker {
+    animation: neon-flicker 2s infinite alternate;
+}
+
+.neon-box {
+    background-color: rgba(10, 10, 10, 0.8);
+    border: 2px solid #ff00de;
+    box-shadow: 0 0 10px #ff00de;
+    padding: 2rem;
+    border-radius: 15px;
+}
+
+.neon-input {
+    background-color: #1a1a1a;
+    border: 2px solid #00f3ff;
+    color: #fff;
+    padding: 12px;
+    margin: 15px 0;
+    width: 100%;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.neon-input:focus {
+    outline: none;
+    box-shadow: 0 0 10px #00f3ff;
+}
+
+.neon-button {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #ff5500;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    margin-top: 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s;
+    width: 100%;
+}
+
+.neon-button:hover {
+    box-shadow: 0 0 20px #ff5500;
+    transform: translateY(-3px);
+}
+
+.neon-counter {
+    margin-top: 30px;
+    font-size: 1rem;
+    text-shadow: 0 0 5px #fff;
+}
+
+/* Second Page - Romantic Styles */
+.love-container {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 600px;
+    margin: 20px;
+    text-align: center;
+    color: #5a2a2a;
+    position: relative;
+    z-index: 1;
+}
+
+.love-photo {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 20px auto;
+    border: 5px solid white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.static-message {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin: 20px 0;
+}
+
+#dynamicMessage {
+    font-size: 1.5rem;
+    font-weight: bold;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.heart {
+    display: inline-block;
+    animation: heartbeat 1.5s infinite;
+}
+
+/* Floating Hearts Animation */
+.floating-hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.heart-emoji {
+    position: absolute;
+    font-size: 24px;
+    opacity: 0;
+    animation: float-up 6s linear infinite;
+    z-index: -1;
+}
+
+/* Buttons */
+.love-button {
+    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    margin: 10px 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255,107,107,0.4);
+    display: block;
+    width: 100%;
+}
+
+.love-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255,107,107,0.6);
+}
+
+#shareBtn {
+    background: linear-gradient(45deg, #4facfe, #00f2fe);
+}
+
+/* Share Modal */
+#shareModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+}
+
+.modal-btn {
+    background: #4facfe;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.close-btn {
+    background: #ff6b6b;
+}
+
+/* Animations */
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.1); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes float-up {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+}
+
+@keyframes neon-flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow: 
+            0 0 5px #fff,
+            0 0 10px #fff,
+            0 0 20px #ff00de,
+            0 0 40px #ff00de;
+    }
+    20%, 24%, 55% {
+        text-shadow: none;
+    }
+}

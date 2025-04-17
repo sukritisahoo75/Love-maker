@@ -3,21 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input Your love</title>
-    <style>
-    </style>
+    <title>Create Your Neon Love Letter</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="body-part">
-        <input class="nameInput" type="text" placeholder="Type Your Name Here....">
-        <div class="image">
-            
+    <div class="neon-container">
+        <h1 class="neon-title">Create Your <span class="neon-flicker">Love Letter</span></h1>
+        <div class="form-container neon-box">
+            <input type="text" id="loverName" placeholder="Your Lover's Name" class="neon-input" required>
+            <input type="file" id="photoUpload" accept="image/*" class="neon-input" required>
+            <button id="createButton" class="neon-button" type="button">Create Love Letter</button>
         </div>
-        <button class="submit"
-        onclick="fun()"
-        >Submit</button>
+        <div class="counter neon-counter" id="usageCount">This has been used 0 times</div>
     </div>
+
     <script src="index.js"></script>
-    <script src="index2.js"></script>
 </body>
 </html>
