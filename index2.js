@@ -1,4 +1,4 @@
-// Initialize IndexedDB (same as in index.js)
+// Initialize IndexedDB
 function initDB() {
     return new Promise((resolve, reject) => {
         const request = indexedDB.open('LoveLettersDB', 1);
@@ -74,8 +74,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     const loveId = urlParams.get('id');
     
     if (!loveId) {
-        alert("Invalid love letter link!");
-        window.location.href = "index.html";
+        redirectToMain();
         return;
     }
     
@@ -84,7 +83,59 @@ document.addEventListener('DOMContentLoaded', async function() {
         
         // Display basic info
         document.getElementById('displayName').textContent = loveData.loverName;
-        document.getElementById('loverPhoto').src = loveData.photo;
+        const imgElement = document.getElementById('loverPhoto');
+        imgElement.src = loveData.photo;
+
+        // Enhanced image handling
+        imgElement.onload = function() {
+            const naturalWidth = this.naturalWidth;
+            const naturalHeight = this.naturalHeight;
+            const aspectRatio = naturalWidth / naturalHeight;
+            
+            // Clear previous orientation classes
+            this.classList.remove('landscape', 'portrait');
+            
+            // Add appropriate orientation class
+            if (aspectRatio > 1.1) {
+                // Landscape image (wider than tall)
+                this.classList.add('landscape');
+                this.style.maxHeight = '60vh';
+                this.style.width = '100%';
+            } else if (aspectRatio < 0.9) {
+                // Portrait image (taller than wide)
+                this.classList.add('portrait');
+                this.style.height = '65vh';
+                this.style.width = 'auto';
+            } else {
+                // Square image
+                this.style.maxHeight = '65vh';
+                this.style.maxWidth = '100%';
+            }
+            
+            // Adjust container for very tall images
+            if (naturalHeight > naturalWidth * 1.5) {
+                this.parentElement.style.maxWidth = '400px';
+            } else {
+                this.parentElement.style.maxWidth = '600px';
+            }
+            
+            // Fade-in effect
+            this.style.opacity = '0';
+            setTimeout(() => {
+                this.style.transition = 'opacity 0.5s ease';
+                this.style.opacity = '1';
+            }, 50);
+        };
+
+        imgElement.onerror = function() {
+            console.error("Failed to load image");
+            this.parentElement.innerHTML = `
+                <div class="image-error">
+                    <p>❤️ Couldn't load the image ❤️</p>
+                    <p>But the love remains!</p>
+                </div>
+            `;
+        };
         
         // Initialize floating hearts
         const floatingHearts = document.getElementById('floatingHearts');
@@ -133,6 +184,11 @@ document.addEventListener('DOMContentLoaded', async function() {
     } catch (error) {
         console.error("Error loading love letter:", error);
         alert("Love letter data not found! It may have expired or been deleted.");
-        window.location.href = "index.html";
+        redirectToMain();
     }
 });
+
+function redirectToMain() {
+    const isGitHub = window.location.host.includes('github.io');
+    window.location.href = isGitHub ? '/Love-maker/' : 'index.html';
+}

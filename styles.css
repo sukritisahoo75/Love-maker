@@ -96,14 +96,56 @@ body {
     z-index: 1;
 }
 
-.love-photo {
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 8px;
+/* Updated Image Container Styles */
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    max-width: 600px;
     margin: 20px auto;
-    border: 5px solid white;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.love-photo {
+    max-width: 100%;
+    max-height: 65vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+    border: 4px solid white;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    display: block;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.love-photo:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Orientation-specific styles */
+.landscape {
+    width: 100%;
+    height: auto;
+    max-height: 60vh;
+}
+
+.portrait {
+    width: auto;
+    height: 65vh;
+    max-width: 100%;
+}
+
+.image-error {
+    color: #5a2a2a;
+    padding: 20px;
+    font-size: 1.2rem;
 }
 
 .static-message {
@@ -206,6 +248,32 @@ body {
 
 .close-btn {
     background: #ff6b6b;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .image-container {
+        width: 95%;
+        padding: 10px;
+    }
+    
+    .love-photo {
+        max-height: 55vh;
+        border-width: 3px;
+    }
+    
+    .portrait {
+        height: 55vh;
+    }
+    
+    .neon-title {
+        font-size: 2.2rem;
+    }
+    
+    .love-container {
+        margin: 10px;
+        padding: 20px;
+    }
 }
 
 /* Animations */
