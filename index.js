@@ -162,6 +162,9 @@ function saveLoveLetter(id, data) {
 }
 
 // Main function with complete error handling
+// [Previous counter and compression functions remain the same...]
+
+// Modified createLoveLetter() function for GitHub Pages
 async function createLoveLetter() {
     const loverName = document.getElementById('loverName').value.trim();
     const photoFile = document.getElementById('photoUpload').files[0];
@@ -181,26 +184,34 @@ async function createLoveLetter() {
     createButton.textContent = 'Creating...';
 
     try {
-        // Step 1: Compress image
+        // Compress image
         const compressedPhoto = await compressImage(photoFile);
         
-        // Step 2: Prepare data
+        // Prepare data
         const loveId = 'love-' + Date.now();
         const loveData = {
             loverName: loverName,
             photo: compressedPhoto
         };
 
-        // Step 3: Save data
+        // Save data
         await saveLoveLetter(loveId, loveData);
         await updateCounter();
         updateCounterDisplay();
 
-        // Step 4: Redirect
-        const pathParts = window.location.pathname.split('/');
-        const repoName = pathParts.length > 1 ? pathParts[1] : '';
-        const baseUrl = repoName ? `${window.location.origin}/${repoName}` : window.location.origin;
-        window.location.href = `${baseUrl}/index2.html?id=${loveId}`;
+        // GitHub Pages-specific URL handling
+        const isGitHubPages = window.location.host.includes('github.io');
+        let redirectUrl;
+        
+        if (isGitHubPages) {
+            // For GitHub Pages (https://sukritisahoo75.github.io/Love-maker/)
+            redirectUrl = `${window.location.origin}/Love-maker/index2.html?id=${loveId}`;
+        } else {
+            // For local development
+            redirectUrl = `index2.html?id=${loveId}`;
+        }
+
+        window.location.href = redirectUrl;
 
     } catch (error) {
         console.error("Error:", error);
@@ -210,6 +221,8 @@ async function createLoveLetter() {
         createButton.textContent = 'Create Love Letter';
     }
 }
+
+// [Rest of your existing code...]
 
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
